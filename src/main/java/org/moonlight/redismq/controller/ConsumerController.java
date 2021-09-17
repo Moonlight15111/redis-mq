@@ -1,6 +1,7 @@
 package org.moonlight.redismq.controller;
 
 import org.moonlight.redismq.handler.RedisHandler;
+import org.moonlight.redismq.list.ConsumerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,12 @@ public class ConsumerController {
     @GetMapping("/nonblock/{key}")
     public String nonblock(@PathVariable(name = "key") String key) {
         return String.valueOf(redisHandler.rightPop(key));
+    }
+
+    @GetMapping("/listener/{key}")
+    public String listener(@PathVariable(name = "key") String key) {
+        ConsumerManager.createConsumer(key, redisHandler);
+        return "Listener";
     }
 
 }
