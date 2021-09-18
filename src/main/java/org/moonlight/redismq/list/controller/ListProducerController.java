@@ -1,4 +1,4 @@
-package org.moonlight.redismq.controller;
+package org.moonlight.redismq.list.controller;
 
 import org.moonlight.redismq.handler.RedisHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ import java.util.Date;
  * @date 2021-09-17 16:02
  */
 @RestController
-@RequestMapping("/prod")
-public class ProducerController {
+@RequestMapping("/list/prod")
+public class ListProducerController {
 
     private final RedisHandler redisHandler;
 
     @Autowired
-    public ProducerController(RedisHandler redisHandler) {
+    public ListProducerController(RedisHandler redisHandler) {
         this.redisHandler = redisHandler;
     }
 

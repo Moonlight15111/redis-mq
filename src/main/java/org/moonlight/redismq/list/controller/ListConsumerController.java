@@ -1,7 +1,7 @@
-package org.moonlight.redismq.controller;
+package org.moonlight.redismq.list.controller;
 
 import org.moonlight.redismq.handler.RedisHandler;
-import org.moonlight.redismq.list.ConsumerManager;
+import org.moonlight.redismq.list.ListConsumerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +21,13 @@ import java.util.concurrent.TimeUnit;
  * @date 2021-09-17 16:02
  */
 @RestController
-@RequestMapping("/cons")
-public class ConsumerController {
+@RequestMapping("/list/cons")
+public class ListConsumerController {
 
     private final RedisHandler redisHandler;
 
     @Autowired
-    public ConsumerController(RedisHandler redisHandler) {
+    public ListConsumerController(RedisHandler redisHandler) {
         this.redisHandler = redisHandler;
     }
 
@@ -43,7 +43,7 @@ public class ConsumerController {
 
     @GetMapping("/listener/{key}")
     public String listener(@PathVariable(name = "key") String key) {
-        ConsumerManager.createConsumer(key, redisHandler);
+        ListConsumerManager.createConsumer(key, redisHandler);
         return "Listener";
     }
 
