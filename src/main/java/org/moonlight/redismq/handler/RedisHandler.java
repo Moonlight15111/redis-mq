@@ -2,9 +2,9 @@ package org.moonlight.redismq.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -84,4 +84,9 @@ public class RedisHandler {
             return null;
         }
     }
+
+    public void publish(String msg, String topic) {
+        redisTemplate.convertAndSend(topic, msg);
+    }
+
 }
